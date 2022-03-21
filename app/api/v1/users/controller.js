@@ -1,8 +1,8 @@
-const getAllUsers = async (req, res) => {
+const getAllUsers = async (req, res,next) => {
     try {
         res.send('respond with a resource');
     } catch (err) {
-        res.json({ message: err });
+        next(err);
     }
 }
 

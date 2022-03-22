@@ -35,7 +35,7 @@ const UserSchema = new mongoose.Schema(
     },
     (attr) => `${attr.value} harus merupakan email yang valid!`
   );
-  
+
   UserSchema.path('email').validate(
     async function (value) {
       try {
@@ -53,5 +53,10 @@ const UserSchema = new mongoose.Schema(
     if (!this.isModified('password')) return;
     this.password = await bcrypt.hash(this.password, 10);
   });
+
+  UserSchema.methods.comparePassword = async function (canditatePassword) {
+    const isMatch = await bcrypt.compare(canditatePassword, this.password);
+    return isMatch;
+  };
 
   module.exports = mongoose.model('User', UserSchema);

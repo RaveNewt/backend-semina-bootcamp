@@ -6,6 +6,7 @@ const logger = require('morgan');
 const usersRouter = require('./app/api/v1/users/router');
 const authRouter = require('./app/api/v1/auth/router');
 const categoriesRouter = require('./app/api/v1/categories/router');
+const speakersRouter = require('./app/api/v1/speakers/router');
 
 //middlewares
 const notFoundMiddleware = require('./app/middlewares/not-found');
@@ -28,6 +29,7 @@ app.get('/',(req,res)=>{
 app.use(`${versionV1}`, usersRouter);
 app.use(`${versionV1}/auth`, authRouter);
 app.use(`${versionV1}/categories`, categoriesRouter);
+app.use(`${versionV1}/speakers`, speakersRouter);
 
 //middlewares
 app.use(notFoundMiddleware);
